@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, Card, Radio, Alert } from "antd";
+import { useParams } from "react-router-dom";
 
 const questions = [
   {
@@ -19,6 +20,9 @@ const questions = [
 ];
 
 export default function QuizPage() {
+  const { id } = useParams(); // id quiz được truyền từ URL
+  const currentq = questions.find(q => q.id === Number(id)) || questions[0];
+
   const [currentId, setCurrentId] = useState(questions[0].id);
   const [selected, setSelected] = useState({});
   const [confirmed, setConfirmed] = useState({});

@@ -5,6 +5,8 @@ import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import MainLayout from './layouts/MainLayout'
 import QuizPage from './pages/QuizPage'
+import CertificationPage from './pages/CertificationPage'
+import DomainPage from './pages/DomainPage'
 
 function App() {
 
@@ -12,8 +14,9 @@ function App() {
     <BrowserRouter>
         <Routes>
           <Route element={<MainLayout />}>
-            <Route path="/" element={<QuizPage />} />
-            <Route path="/about" element={<h1>About Page</h1>} />
+            <Route path="/" element={<CertificationPage />} />
+            <Route path="/:certificationId/domains" element={<DomainPage />} />
+            <Route path="/quizpage/:id" element={<QuizPage />} />
           </Route>
         </Routes>
     </BrowserRouter>

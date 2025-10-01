@@ -4,7 +4,7 @@ import Header from "./Header";
 
 export default function MainLayout({ children }) {
     return (
-        <div className="bg-gray-900">
+        <div className="">
             <Header />
             <main><Outlet /></main>
             <Footer />
