@@ -10,7 +10,7 @@ export default function DomainPage() {
     useEffect(() => {
         if(!certificationId) return;
         const fetchDomains = async () => {
-            const res = await getAllDomain(certificationId);
+            const res = await getAllDomain(certificationId, "vi");
             setDomains(res);
         }
     fetchDomains()
