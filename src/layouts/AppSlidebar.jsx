@@ -35,6 +35,7 @@ const navItems = [
 ];
 export default function AppSlideBar () {
 
+    const  { isExpanded, isHovered, setIsHovered } = useSideBar
     return (
         <div></div>
     )
