@@ -16,7 +16,7 @@ function App() {
           <Route element={<MainLayout />}>
             <Route path="/" element={<CertificationPage />} />
             <Route path="/:certificationId/domains" element={<DomainPage />} />
-            <Route path="/quizpage/:id" element={<QuizPage />} />
+            <Route path="/quizpage" element={<QuizPage />} />
           </Route>
         </Routes>
     </BrowserRouter>

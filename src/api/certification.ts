@@ -19,3 +19,10 @@ export const getDetailCertification = async (id: number, language: string) => {
     });
     return res.data;
 }
+
+export const deleteCertification = async (id: string) => {
+    const res = await axiosInstance.delete(`certifications/${id}`, {
+        params: {id}
+    });
+    return res.data;
+}
