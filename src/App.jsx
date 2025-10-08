@@ -7,6 +7,7 @@ import MainLayout from './layouts/MainLayout'
 import QuizPage from './pages/QuizPage'
 import CertificationPage from './pages/CertificationPage'
 import DomainPage from './pages/DomainPage'
+import QuestionManagement from './pages/admin/QuestionManagement'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
             <Route path="/" element={<CertificationPage />} />
             <Route path="/:certificationId/domains" element={<DomainPage />} />
             <Route path="/quizpage" element={<QuizPage />} />
+            <Route path="/admin/question/list" element={<QuestionManagement />} />
           </Route>
         </Routes>
     </BrowserRouter>
