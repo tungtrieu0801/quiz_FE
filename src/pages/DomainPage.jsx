@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { createDomain, deleteDomain, getAllDomain } from "../api/domainApi";
 import { Button, Form, Input, Modal, Popconfirm, Select, Space, Table } from "antd";
 import { PlusOutlined, MinusCircleOutlined } from "@ant-design/icons";
+import { useLanguageStore } from "../store/useLanguageStore";
 const LANG_OPTIONS = [
   { label: "Tiếng Việt", value: "vi" },
   { label: "English", value: "en" },
@@ -17,10 +18,13 @@ export default function DomainPage() {
   const [addLoading, setAddLoading] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [form] = Form.useForm();
+  const certName = useLocation().state?.certificationName;
+  const language = useLanguageStore(state => state.language);
+
   useEffect(() => {
     if (!certificationId) return;
     const fetchDomains = async () => {
-      const res = await getAllDomain(certificationId, "vi");
+      const res = await getAllDomain(certificationId, language);
       console.log("Data", res)
       setDomains(Array.isArray(res.data) ? res.data : []);
     };
@@ -126,7 +130,7 @@ export default function DomainPage() {
 
   return (
     <div>
-      <h1>Domains of Certification {certificationId}</h1>
+      <h1 className="text-2xl" >Chapter in {certName}</h1>
       <Button danger size="small" onClick={() => setAddModalOpen(true)}> them </Button>
       <Table
         dataSource={domains}
