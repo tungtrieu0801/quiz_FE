@@ -1,11 +1,13 @@
 import { CreateDomainPayload } from "../types/domain";
 import axiosInstance from "./axiosInstance"
 
-export const getAllDomain = async (certificationId: number, language: string) => {
+export const getAllDomain = async (certificationId: number, language: string, page: number, limit: number) => {
     const res = await axiosInstance.get(`/domains`, {
         params: { 
             certificationId,
-            language 
+            language,
+            page,
+            limit
         }
     });
     return res.data;
