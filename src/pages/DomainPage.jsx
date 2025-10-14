@@ -13,7 +13,6 @@ import {
   message,
 } from "antd";
 import { PlusOutlined, MinusCircleOutlined } from "@ant-design/icons";
-import { useLanguageStore } from "../store/useLanguageStore";
 
 const LANG_OPTIONS = [
   { label: "Tiếng Việt", value: "vi" },
@@ -29,10 +28,6 @@ export default function DomainPage() {
   const [addLoading, setAddLoading] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [form] = Form.useForm();
-  const certName = useLocation().state?.certificationName;
-  const language = useLanguageStore(state => state.language);
-
-  useEffect(() => {
 
   // ⚙️ State quản lý phân trang
   const [pagination, setPagination] = useState({
@@ -44,12 +39,6 @@ export default function DomainPage() {
   // 🧭 Gọi API lấy domain có phân trang
   const fetchDomains = async (page, limit) => {
     if (!certificationId) return;
-    const fetchDomains = async () => {
-      const res = await getAllDomain(certificationId, language);
-      console.log("Data", res)
-      setDomains(Array.isArray(res.data) ? res.data : []);
-    };
-    fetchDomains();
     try {
       setLoading(true);
       const res = await getAllDomain(certificationId, "vi", page, limit);
@@ -207,9 +196,6 @@ export default function DomainPage() {
   ];
 
   return (
-    <div>
-      <h1 className="text-2xl" >Chapter in {certName}</h1>
-      <Button danger size="small" onClick={() => setAddModalOpen(true)}> them </Button>
     <div style={{ padding: 24 }}>
       <h1>Domains of Certification {certificationId}</h1>
 
