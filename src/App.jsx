@@ -8,7 +8,6 @@ import QuestionManagement from './pages/admin/QuestionManagement'
 import AboutMePage from './layouts/AboutMe'
 import BlogPage from './layouts/BlogPage'
 import IeltsPage from './layouts/IeltsPage'
-import QuestionManagement from './pages/admin/QuestionManagement'
 
 function App() {
 
@@ -23,7 +22,6 @@ function App() {
             <Route path="/about" element={<AboutMePage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/ielts" element={<IeltsPage />} />
-            <Route path="/admin/question/list" element={<QuestionManagement />} />
           </Route>
         </Routes>
     </BrowserRouter>
