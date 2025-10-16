@@ -8,6 +8,7 @@ import QuizPage from './pages/QuizPage'
 import CertificationPage from './pages/CertificationPage'
 import DomainPage from './pages/DomainPage'
 import QuestionManagement from './pages/admin/QuestionManagement'
+import AuthPage from './pages/AuthPage'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
     <BrowserRouter>
         <Routes>
           <Route element={<MainLayout />}>
+            <Route path="/login" element={<AuthPage />} />
             <Route path="/" element={<CertificationPage />} />
             <Route path="/:certificationId/domains" element={<DomainPage />} />
             <Route path="/quizpage" element={<QuizPage />} />
