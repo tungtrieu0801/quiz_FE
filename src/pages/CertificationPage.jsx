@@ -118,8 +118,25 @@ export default function CertificationPage() {
   if (error) return <p className="text-center text-red-500">{error}</p>;
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4 text-center">Danh sách chứng chỉ</h1>
+    <div className="">
+      <div>
+        <img
+            src="/images/background2.JPG"
+            alt="Logo"
+            className="w-full h- mr-2" // 👈 chỉnh kích thước và khoảng cách phải
+          />
+      </div>
+      <div className="flex px-15 bg-gray-50">
+        <div className="w-1/4 text-start font-bold">
+          <p>CATEGORIES</p>
+          <ul>
+            <li className="cursor-pointer hover:text-blue-500">All</li>
+            <li className="cursor-pointer hover:text-blue-500">Development</li>
+            <li className="cursor-pointer hover:text-blue-500">IT & Software</li>
+          </ul>
+        </div>
+        <div className="w-3/4">
+      <h1 className="text-start font-bold">CERTIFICATE LIBRARY</h1>
 
       <div>
         <Button type="primary" onClick={() => setAddModalOpen(true)}>
@@ -275,6 +292,8 @@ export default function CertificationPage() {
           </div>
         </Form>
       </Modal>
+        </div>
+      </div>
     </div>
   );
 }

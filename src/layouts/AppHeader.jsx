@@ -11,10 +11,10 @@ import { useAuthStore } from "../store/authStore";
 import { Link, useNavigate } from "react-router-dom";
 
 const navOptions = [
-  { key: "certificate", label: "Certificate", href: "/certificate" },
-  { key: "blog", label: "Blog", href: "/blog" },
-  { key: "ielts", label: "Ielts", href: "/ielts" },
-  { key: "about", label: "About me", href: "/about" },
+  { key: "certificate", label: "CERTIFICATE", href: "/certificate" },
+  { key: "blog", label: "BLOG", href: "/blog" },
+  { key: "ielts", label: "IELTS", href: "/ielts" },
+  { key: "about", label: "ABOUT ME", href: "/about" },
 ];
 
 const LANG_OPTIONS = [
@@ -63,22 +63,27 @@ export default function AppHeader() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 h-16 shadow z-20 bg-white">
+    <header className="fixed top-0 left-0 right-0 h-12 shadow z-20 bg-gray-700">
       {/* ✅ Giới hạn nội dung trong max-w */}
       <div className="max-w-screen-xl mx-auto grid grid-cols-3 items-center px-8 h-full">
         {/* Left: Logo */}
         <div className="flex items-center">
-          <span className="text-black font-bold text-lg">Logo</span>
+          <img
+            src="/images/logo/iconLogo.png"
+            alt="Logo"
+            className="w-8 h-8 mr-2" // 👈 chỉnh kích thước và khoảng cách phải
+          />
+          <span className="text-white font-bold text-lg">CERTIFICATES</span>
         </div>
 
         {/* Center: Options */}
         <nav className="flex justify-center">
-          <div className="flex gap-12">
+          <div className="flex gap-6 text-sm">
             {navOptions.map((option) => (
               <Link
                 key={option.key}
                 to={option.href}
-                className="text-gray-700 hover:text-blue-500 font-medium transition"
+                className="text-white hover:text-blue-500 font-medium transition"
               >
                 {option.label}
               </Link>

@@ -7,7 +7,7 @@ export default function MainLayout() {
     <div className="bg-white min-h-screen">
       <AppHeader />
 
-      <main className="mt-16 max-w-screen-lg mx-auto px-4">
+      <main className="mt-10 mx-auto">
         <Outlet />
       </main>
 

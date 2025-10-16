@@ -32,7 +32,7 @@ export default function AuthPage() {
       // chỉnh endpoint theo backend của bạn
       const res = await login(values.email, values.password);
       if (res?.accessToken) {
-        setAuth(res.accessToken, res.user || null);
+        setAuth(res.accessToken, res || null);
         await new Promise((r) => setTimeout(r, 100));
         navigate("/certificate");
 

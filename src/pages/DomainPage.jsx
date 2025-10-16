@@ -12,7 +12,7 @@ import {
   Table,
   message,
 } from "antd";
-import { PlusOutlined, MinusCircleOutlined } from "@ant-design/icons";
+import { PlusOutlined, MinusCircleOutlined, ArrowLeftOutlined } from "@ant-design/icons";
 import { useLanguageStore } from "../store/useLanguageStore";
 
 const LANG_OPTIONS = [
@@ -200,7 +200,13 @@ export default function DomainPage() {
   return (
     <div style={{ padding: 24 }}>
       <h1>Domains of Certification {certificationId}</h1>
-
+      <Button
+        icon={<ArrowLeftOutlined />}
+        onClick={() => navigate(-1)}
+        style={{ marginRight: 12 }}
+      >
+        Quay lại
+      </Button>
       <Button
         danger
         size="small"
