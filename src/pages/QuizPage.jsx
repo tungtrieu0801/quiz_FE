@@ -2,17 +2,18 @@ import { useEffect, useState } from "react";
 import { Button, Card, Radio, Alert, Spin } from "antd";
 import { useLocation } from "react-router-dom";
 import { getQuestions } from "../api/quizApi";
+import { useLanguageStore } from "../store/useLanguageStore";
 
 export default function QuizPage() {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const certificationId = params.get("certificationId");
   const domainId = params.get("domainId");
-  const language = params.get("language") || "vi";
   const page = params.get("page") || 1;
   const limit = params.get("limit") || 10;
   const sortBy = params.get("sortBy") || "id";
   const order = params.get("order") || "asc";
+  const language = useLanguageStore((state) => state.language);
 
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);

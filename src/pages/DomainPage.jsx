@@ -13,6 +13,7 @@ import {
   message,
 } from "antd";
 import { PlusOutlined, MinusCircleOutlined } from "@ant-design/icons";
+import { useLanguageStore } from "../store/useLanguageStore";
 
 const LANG_OPTIONS = [
   { label: "Tiếng Việt", value: "vi" },
@@ -28,6 +29,7 @@ export default function DomainPage() {
   const [addLoading, setAddLoading] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [form] = Form.useForm();
+  const language = useLanguageStore((state) => state.language);
 
   // ⚙️ State quản lý phân trang
   const [pagination, setPagination] = useState({
@@ -41,7 +43,7 @@ export default function DomainPage() {
     if (!certificationId) return;
     try {
       setLoading(true);
-      const res = await getAllDomain(certificationId, "vi", page, limit);
+      const res = await getAllDomain(certificationId, language, page, limit);
       // API trả dạng { data: [...], pagination: { total, page, limit } }
       const data = res?.data || [];
       const total = res?.pagination?.total || 0;
@@ -62,7 +64,7 @@ export default function DomainPage() {
 
   useEffect(() => {
     fetchDomains(pagination.current, pagination.pageSize);
-  }, [certificationId]);
+  }, [certificationId, language]);
 
   // ⚡ Xử lý đổi trang
   const handleTableChange = (pag) => {

@@ -12,41 +12,36 @@ import {
   Typography,
 } from "antd";
 import { login } from "../api/authApi";
+import { useAuthStore } from "../store/authStore";
+import axiosInstance from "../api/axiosInstance";
 
 const { TabPane } = Tabs;
 const { Title, Text } = Typography;
 
 export default function AuthPage() {
+  const setAuth = useAuthStore((state) => state.setAuth);
   const navigate = useNavigate();
 
   const [loginForm] = Form.useForm();
   const [registerForm] = Form.useForm();
   const [loading, setLoading] = useState(false);
 
-  const apiPost = async (url, body) => {
-    const res = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    });
-    return res.json();
-  };
-
   const handleLogin = async (values) => {
     setLoading(true);
     try {
       // chỉnh endpoint theo backend của bạn
       const res = await login(values.email, values.password);
-      if (res?.token) {
-        localStorage.setItem("token", res.token);
-        message.success("Đăng nhập thành công");
-        navigate("/"); // chuyển trang sau khi login
+      if (res?.accessToken) {
+        setAuth(res.accessToken, res.user || null);
+        await new Promise((r) => setTimeout(r, 100));
+        navigate("/certificate");
+
       } else {
-        message.error(res?.message || "Đăng nhập thất bại");
+        console.log("lỗi")
       }
     } catch (err) {
       console.error(err);
-      message.error("Lỗi khi đăng nhập");
+      // message.error("Lỗi khi đăng nhập");
     } finally {
       setLoading(false);
     }
