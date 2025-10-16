@@ -3,6 +3,7 @@ import { deleteCertification, getDetailCertification, getAllCertifications, crea
 import { useNavigate } from "react-router-dom";
 import { Modal, Button, Spin, message, Form, Input, Select, Space } from "antd";
 import { PlusOutlined, MinusCircleOutlined } from "@ant-design/icons";
+import { useLanguageStore } from "../store/useLanguageStore";
 
 const LANG_OPTIONS = [
   { label: "Tiếng Việt", value: "vi" },
@@ -23,6 +24,7 @@ export default function CertificationPage() {
   const [addLoading, setAddLoading] = useState(false);
   const [form] = Form.useForm();
 
+  const language = useLanguageStore((state) => state.language);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,13 +41,13 @@ export default function CertificationPage() {
       }
     };
     load();
-  }, []);
+  }, [language]);
 
   const handleOpen = async (id) => {
     setOpenId(id);
     setLoadingDetail(true);
     try {
-      const res = await getDetailCertification(id, "vi");
+      const res = await getDetailCertification(id, language);
       setDetail(res);
     } catch (err) {
       message.error("Lấy chi tiết thất bại");
@@ -61,7 +63,9 @@ export default function CertificationPage() {
 
   const handleLearn = () => {
     if (detail) {
-      navigate(`/${detail.id}/domains`);
+      navigate(`/${detail.id}/domains`, {
+        state: { certificationName: detail.name },
+      });
     }
   };
 

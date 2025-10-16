@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { createDomain, deleteDomain, getAllDomain } from "../api/domainApi";
 import {
   Button,
